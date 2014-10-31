@@ -49,4 +49,4 @@
 
     app.factory('RESTFactory', ['$http', RESTFactory]);
 
-})(angular.module('case1'));
+})(angular.module('case2'));

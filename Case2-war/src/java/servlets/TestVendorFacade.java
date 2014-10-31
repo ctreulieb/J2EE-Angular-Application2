@@ -5,7 +5,7 @@
  */
 package servlets;
 
-import case2ejbs.VendorBeanFacade;
+import case2ejbs.VendorFacadeBean;
 import dtos.VendorEJBDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "TestVendorFacade", urlPatterns = {"/TestVendorFacade"})
 public class TestVendorFacade extends HttpServlet {
     @EJB
-    private VendorBeanFacade vbf;
+    private VendorFacadeBean vbf;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

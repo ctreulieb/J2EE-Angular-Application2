@@ -3,7 +3,7 @@
         <div class="panel-body x-small">
             <div class="panel panel-primary">
                 <div class="panel-heading xsmall">
-                    Vendor Information
+                    Vendor Information 2.0
                 </div>
                 <div class="panel-body xsmall" >
                     <div class="col-xs-5 col-lg-6 text-right">Name:</div>
@@ -35,7 +35,7 @@
                         <span ng-show="vendorForm.vendorcity.$error.required">City is required</span>
                     </div>
                     <div class="col-xs-5 col-lg-6 text-right">Postal:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input size=10 required type="text" ng-pattern="/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/" ng-model="vendor.postalCode" name="vendorpostal" /></div>
+                    <div class="col-xs-7 col-lg-6 text-left"><input size=10 required type="text" ng-pattern="/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/" ng-model="vendor.postalcode" name="vendorpostal" /></div>
                     <div class="cols-xs-11 custom-error" ng-show="vendorForm.vendorpostal.$pristine || vendorForm.vendorpostal.$invalid">
                         <span ng-show="vendorForm.vendorpostal.$error.required">Postal Code is required</span>
                         <span ng-show="vendorForm.vendorpostal.$error.pattern">Please enter a valid postal code</span>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-xs-5 col-lg-6 text-right">Type:</div>
                     <div class="col-xs-7 col-lg-6 text-left"> 
-                        <select ng-model="vendor.type" ng-init="vendor.type = 'Trusted'" class="input-small">
+                        <select ng-model="vendor.vendortype" ng-init="vendor.vendortype = 'Trusted'" class="input-small">
                             <option value="Trusted">Trusted</option>
                             <option value="Unknown">Unknown</option>
                         </select>

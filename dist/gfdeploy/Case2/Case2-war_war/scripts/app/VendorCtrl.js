@@ -9,7 +9,7 @@ var VendorCtrl = function($scope, $modal, RESTFactory, $filter) {
     //Initializes variables and gets vendors from database
     var init = function() {
         $scope.status = 'Loading Vendors...';
-        RESTFactory.restCall('get', baseurl, -1, '').then(function(vendors) {
+        RESTFactory.restCall('get', baseurl + "/vendors", -1, '').then(function(vendors) {
             
             if (vendors.length > 0) { 
                 $scope.vendors = vendors;
