@@ -1,15 +1,18 @@
 package models;
 
 import javax.annotation.Generated;
+import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import models.ProductsModel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2014-11-05T12:00:43")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2014-11-08T13:31:19")
 @StaticMetamodel(VendorsModel.class)
 public class VendorsModel_ { 
 
     public static volatile SingularAttribute<VendorsModel, String> postalcode;
     public static volatile SingularAttribute<VendorsModel, String> phone;
+    public static volatile CollectionAttribute<VendorsModel, ProductsModel> productsModelCollection;
     public static volatile SingularAttribute<VendorsModel, String> email;
     public static volatile SingularAttribute<VendorsModel, String> name;
     public static volatile SingularAttribute<VendorsModel, String> province;

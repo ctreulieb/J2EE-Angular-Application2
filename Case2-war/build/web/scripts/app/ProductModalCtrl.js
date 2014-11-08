@@ -10,7 +10,7 @@ var ProductModalCtrl = function($scope, $modalInstance, RESTFactory) {
     //Init 
     //Initializes variables and gets vendors from database
     var init = function() {
-        RESTFactory.restCall('get', 'webresources/vendor', -1, '').then(function(vendors) {
+        RESTFactory.restCall('get', 'webresources/vendor/vendors', -1, '').then(function(vendors) {
             
             if (vendors.length > 0) { 
                 $scope.vendors = vendors;

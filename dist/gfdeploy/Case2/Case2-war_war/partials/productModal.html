@@ -70,6 +70,24 @@
                         <span ng-show="productForm.qoo.$error.required">QOO is required</span>
                     </div>
                 </div>
+                <div class="panel-heading xsmall">
+                    QR Code
+                    <button class="btn-primary pull-right" ng-click="qrCollapsed = !qrCollapsed;">
+                        <span ng-show="!qrCollapsed" class="glyphicon glyphicon-chevron-down"></span>
+                        <span ng-show="qrCollapsed" class="glyphicon glyphicon-chevron-right"></span>
+                    </button>
+                </div>
+                <div class="panel-body xsmall" ng-class="{true: 'collapse'}[!qrCollapsed]">
+                    <div class="col-xs-5 col-lg-6 text-right">QR Text:</div>
+                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-model="product.qrcodetext" name="qrcodetext" /></div>
+                    <div class="cols-xs-11 custom-error" ng-show="productForm.qrt.$pristine || productForm.qrt.$invalid">
+                        <span ng-show="productForm.qrt.$error.required">QR Text is required</span>
+                    </div>
+                    <div class="col-xs-5 col-lg-6 text-right">QR Code:</div>
+                    <div class="col-xs-6 col-lg-6 text-left">
+                        <img alt="qrcode" ng-src="QRCode?qrc={{product.productcode}}" />
+                    </div>
+                </div>
             </div>
         </div>               
     <div>    

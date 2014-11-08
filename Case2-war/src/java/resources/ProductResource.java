@@ -5,10 +5,13 @@
 
 package resources;
 
+import case2ejbs.ProductFacadeBean;
 import dtos.ProductDTO;
+import dtos.ProductEJBDTO;
 import java.net.URI;
 import java.util.ArrayList;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -29,8 +32,8 @@ public class ProductResource {
     @Context
     private UriInfo context;
     
-    @Resource(lookup = "jdbc/Info5059db")
-    DataSource ds;
+    @EJB
+    private ProductFacadeBean pfb;
     
     public ProductResource() {
     }
@@ -42,9 +45,8 @@ public class ProductResource {
      */
     @POST
     @Consumes("application/json")
-    public Response createProductFromJson(ProductDTO product) {
-        ProductModel model = new ProductModel();
-        int numProductsAdded = model.addProduct(product, ds);
+    public Response createProductFromJson(ProductEJBDTO product) {
+        int numProductsAdded = pfb.addProduct(product);
         URI uri = context.getAbsolutePath();
         return Response.created(uri).entity(numProductsAdded).build();
     }
@@ -55,9 +57,8 @@ public class ProductResource {
      */
     @GET
     @Produces("application/json")
-    public ArrayList<ProductDTO> getProductsJson() {
-        ProductModel model = new ProductModel();
-        return model.getProducts(ds);
+    public ArrayList<ProductEJBDTO> getProductsJson() {
+        return pfb.getProducts();
     }
     
     /**
@@ -65,13 +66,13 @@ public class ProductResource {
      * @param vendorno - Vendor no of vendor who's product info you want
      * @return all products for specified vendor in JSON format
      */
-    @GET
-    @Path("/{vendorno}")
-    @Produces("application/json")
-    public ArrayList<ProductDTO> getVendorProductsJson(@PathParam("vendorno") int vendorno) {
-        ProductModel model = new ProductModel();
-        return model.getAllProductsForVendor(vendorno, ds);
-    }
+//    @GET
+//    @Path("/{vendorno}")
+//    @Produces("application/json")
+//    public ArrayList<ProductDTO> getVendorProductsJson(@PathParam("vendorno") int vendorno) {
+//        ProductModel model = new ProductModel();
+//        return model.getAllProductsForVendor(vendorno, ds);
+//    }
     
     /**
      * updateProductFromJson
@@ -80,9 +81,8 @@ public class ProductResource {
      */
     @PUT
     @Consumes("application/json")
-    public Response updateProductFromJson(ProductDTO product) {
-        ProductModel model = new ProductModel();
-        int numRowsUpdated = model.updateProduct(product, ds);
+    public Response updateProductFromJson(ProductEJBDTO product) {
+        int numRowsUpdated = pfb.updateProduct(product);
         URI uri = context.getAbsolutePath();
         return Response.created(uri).entity(numRowsUpdated).build();
     }
@@ -96,8 +96,7 @@ public class ProductResource {
     @Path("/{productcode}")
     @Consumes("application/json")
     public Response deleteProductFromJson(@PathParam("productcode")String productcode) {
-        ProductModel  model = new ProductModel();
-        int numRowsDeleted = model.deleteProduct(productcode, ds);
+        int numRowsDeleted = pfb.deleteProduct(productcode);
         URI uri = context.getAbsolutePath();
         System.out.println("number of rows deleted " + numRowsDeleted);
         return Response.created(uri).entity(numRowsDeleted).build();

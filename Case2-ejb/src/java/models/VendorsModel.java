@@ -6,7 +6,9 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,6 +42,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "VendorsModel.findByName", query = "SELECT v FROM VendorsModel v WHERE v.name = :name"),
     @NamedQuery(name = "VendorsModel.findByEmail", query = "SELECT v FROM VendorsModel v WHERE v.email = :email")})
 public class VendorsModel implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendorno")
+    private Collection<ProductsModel> productsModelCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -201,6 +207,15 @@ public class VendorsModel implements Serializable {
     @Override
     public String toString() {
         return "models.VendorsModel[ vendorno=" + vendorno + " ]";
+    }
+
+    @XmlTransient
+    public Collection<ProductsModel> getProductsModelCollection() {
+        return productsModelCollection;
+    }
+
+    public void setProductsModelCollection(Collection<ProductsModel> productsModelCollection) {
+        this.productsModelCollection = productsModelCollection;
     }
     
 }
