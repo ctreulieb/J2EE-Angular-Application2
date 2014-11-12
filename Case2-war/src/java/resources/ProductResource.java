@@ -6,13 +6,10 @@
 package resources;
 
 import case2ejbs.ProductFacadeBean;
-import dtos.ProductDTO;
 import dtos.ProductEJBDTO;
 import java.net.URI;
 import java.util.ArrayList;
-import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -24,7 +21,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import models.ProductModel;
 
 @Path("product")
 public class ProductResource {
@@ -66,13 +62,12 @@ public class ProductResource {
      * @param vendorno - Vendor no of vendor who's product info you want
      * @return all products for specified vendor in JSON format
      */
-//    @GET
-//    @Path("/{vendorno}")
-//    @Produces("application/json")
-//    public ArrayList<ProductDTO> getVendorProductsJson(@PathParam("vendorno") int vendorno) {
-//        ProductModel model = new ProductModel();
-//        return model.getAllProductsForVendor(vendorno, ds);
-//    }
+    @GET
+    @Path("/{vendorno}")
+    @Produces("application/json")
+    public ArrayList<ProductEJBDTO> getVendorProductsJson(@PathParam("vendorno") int vendorno) {
+        return pfb.getAllProductsForVendor(vendorno);
+    }
     
     /**
      * updateProductFromJson

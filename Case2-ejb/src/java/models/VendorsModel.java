@@ -43,6 +43,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "VendorsModel.findByEmail", query = "SELECT v FROM VendorsModel v WHERE v.email = :email")})
 public class VendorsModel implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendorno")
+    private Collection<PurchaseordersModel> purchaseordersModelCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendorno")
     private Collection<ProductsModel> productsModelCollection;
     private static final long serialVersionUID = 1L;
     @Id
@@ -216,6 +218,15 @@ public class VendorsModel implements Serializable {
 
     public void setProductsModelCollection(Collection<ProductsModel> productsModelCollection) {
         this.productsModelCollection = productsModelCollection;
+    }
+
+    @XmlTransient
+    public Collection<PurchaseordersModel> getPurchaseordersModelCollection() {
+        return purchaseordersModelCollection;
+    }
+
+    public void setPurchaseordersModelCollection(Collection<PurchaseordersModel> purchaseordersModelCollection) {
+        this.purchaseordersModelCollection = purchaseordersModelCollection;
     }
     
 }

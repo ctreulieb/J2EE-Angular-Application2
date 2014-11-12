@@ -32,6 +32,7 @@ import models.VendorsModel;
 @NamedQueries({
     @NamedQuery(name = "ProductsModel.findAll", query = "SELECT p FROM ProductsModel p"),
     @NamedQuery(name = "ProductsModel.findByProductcode", query = "SELECT p FROM ProductsModel p WHERE p.productcode = :productcode"),
+    @NamedQuery(name = "ProductsModel.findByVendorno", query = "SELECT p FROM ProductsModel p WHERE p.vendorno = :vendorno"),
     @NamedQuery(name = "ProductsModel.findByVendorsku", query = "SELECT p FROM ProductsModel p WHERE p.vendorsku = :vendorsku"),
     @NamedQuery(name = "ProductsModel.findByProductname", query = "SELECT p FROM ProductsModel p WHERE p.productname = :productname"),
     @NamedQuery(name = "ProductsModel.findByCostprice", query = "SELECT p FROM ProductsModel p WHERE p.costprice = :costprice"),

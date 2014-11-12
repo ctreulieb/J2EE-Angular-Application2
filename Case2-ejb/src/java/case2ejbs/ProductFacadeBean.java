@@ -140,6 +140,36 @@ public class ProductFacadeBean {
         return productsDTO;
     }
     
+    public ArrayList<ProductEJBDTO> getAllProductsForVendor(int vendorNo){
+        List<ProductsModel> products;
+        ArrayList<ProductEJBDTO> productsDTO = new ArrayList();
+        try {
+            Query qry = em.createNamedQuery("ProductsModel.findByVendorno").setParameter("vendorno", new VendorsModel(vendorNo));
+            products = qry.getResultList();
+            
+            
+            for(ProductsModel p : products) {
+                ProductEJBDTO dto = new ProductEJBDTO();
+                dto.setCostprice(p.getCostprice().doubleValue());
+                dto.setEoq(p.getEoq());
+                dto.setMsrp(p.getMsrp().doubleValue());
+                dto.setProductcode(p.getProductcode());
+                dto.setProductname(p.getProductname());
+                dto.setQoh(p.getQoh());
+                dto.setQoo(p.getQoo());
+                dto.setQrcode((byte[])p.getQrcode());
+                dto.setQrcodetext(p.getQrcodetxt());
+                dto.setRop(p.getRop());
+                dto.setVendorno(p.getVendorno().getVendorno());
+                dto.setVendorsku(p.getVendorsku());
+                productsDTO.add(dto);
+            }
+        } catch (Exception e) {
+            System.out.println("other issue - " + e.getMessage());
+        }
+        return productsDTO;
+    }
+    
     public ProductEJBDTO getProduct(String productcode){
         ProductsModel p;
         ProductEJBDTO dto = new ProductEJBDTO();
