@@ -21,6 +21,10 @@
                         controller: 'GeneratorCtrl',
                         templateUrl: 'partials/generator.html'
                     })
+                    .when('/viewer', {
+                        controller: 'ViewerCtrl',
+                        templateUrl: 'partials/viewer.html'
+                    })
                     .otherwise({redirectTo: '/'});
             
         }]);

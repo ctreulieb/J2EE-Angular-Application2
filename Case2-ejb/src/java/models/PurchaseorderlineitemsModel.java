@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PurchaseorderlineitemsModel.findByLineid", query = "SELECT p FROM PurchaseorderlineitemsModel p WHERE p.lineid = :lineid"),
     @NamedQuery(name = "PurchaseorderlineitemsModel.findByProdcd", query = "SELECT p FROM PurchaseorderlineitemsModel p WHERE p.prodcd = :prodcd"),
     @NamedQuery(name = "PurchaseorderlineitemsModel.findByQty", query = "SELECT p FROM PurchaseorderlineitemsModel p WHERE p.qty = :qty"),
+    @NamedQuery(name = "PurchaseorderlineitemsModel.findByPonumber", query = "SELECT p FROM PurchaseorderlineitemsModel p WHERE p.ponumber = :ponumber"),
     @NamedQuery(name = "PurchaseorderlineitemsModel.findByPrice", query = "SELECT p FROM PurchaseorderlineitemsModel p WHERE p.price = :price")})
 public class PurchaseorderlineitemsModel implements Serializable {
     private static final long serialVersionUID = 1L;

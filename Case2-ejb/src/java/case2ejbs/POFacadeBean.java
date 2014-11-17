@@ -8,7 +8,10 @@ package case2ejbs;
 import dtos.PurchaseOrderEJBDTO;
 import dtos.PurchaseOrderLineitemEJBDTO;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
@@ -18,6 +21,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import models.ProductsModel;
@@ -116,5 +120,39 @@ public class POFacadeBean {
             context.setRollbackOnly();
         } 
         return -1;
+    }
+    
+    public ArrayList<PurchaseOrderEJBDTO> getAllPOsForVendor(int vendorno){
+        List<PurchaseordersModel> pos;
+        ArrayList<PurchaseOrderEJBDTO> podtos = new ArrayList<>();
+        try{
+            Query qry = em.createNamedQuery("PurchaseordersModel.findByVendorno").setParameter("vendorno", new VendorsModel(vendorno));
+            pos = qry.getResultList();
+            for(PurchaseordersModel po : pos){
+                PurchaseOrderEJBDTO podto = new PurchaseOrderEJBDTO();
+                podto.setDate(new SimpleDateFormat("MMMM dd yyyy").format(po.getPodate()));
+                podto.setPonumber(po.getPonumber());
+                podto.setVendorno(vendorno);
+                Query poliqry = em.createNamedQuery("PurchaseorderlineitemsModel.findByPonumber").setParameter("ponumber", po);
+                List<PurchaseorderlineitemsModel> polis;
+                polis = poliqry.getResultList();
+                ArrayList<PurchaseOrderLineitemEJBDTO> polidtos = new ArrayList<>();
+                for(PurchaseorderlineitemsModel poli: polis){
+                    PurchaseOrderLineitemEJBDTO polidto =  new PurchaseOrderLineitemEJBDTO();
+                    polidto.setCostprice(poli.getPrice().doubleValue());
+                    polidto.setProductcode(poli.getProdcd());
+                    polidto.setQty(poli.getQty());
+                    Query ponameqry = em.createNamedQuery("ProductsModel.findByProductcode").setParameter("productcode", polidto.getProductcode());
+                    ProductsModel p = (ProductsModel) ponameqry.getSingleResult();
+                    polidto.setProductname(p.getProductname());
+                    polidtos.add(polidto);
+                }
+                podto.setItems(polidtos);
+                podtos.add(podto);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return podtos;
     }
 }

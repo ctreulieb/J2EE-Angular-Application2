@@ -7,12 +7,16 @@ package resources;
 import case2ejbs.POFacadeBean;
 import dtos.PurchaseOrderEJBDTO;
 import java.net.URI;
+import java.util.ArrayList;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -43,6 +47,13 @@ public class POResource {
         int pono = pfb.addPO(po);
         URI uri = context.getAbsolutePath();
         return Response.created(uri).entity(pono).build();
+    }
+    
+    @GET
+    @Path("/{vendorno}")
+    @Produces("application/json")
+    public ArrayList<PurchaseOrderEJBDTO> getVendorPOsJson(@PathParam("vendorno") int vendorno) {
+        return pfb.getAllPOsForVendor(vendorno);
     }
     
 }

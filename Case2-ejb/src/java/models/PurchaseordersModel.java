@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PurchaseordersModel.findAll", query = "SELECT p FROM PurchaseordersModel p"),
     @NamedQuery(name = "PurchaseordersModel.findByPonumber", query = "SELECT p FROM PurchaseordersModel p WHERE p.ponumber = :ponumber"),
     @NamedQuery(name = "PurchaseordersModel.findByAmount", query = "SELECT p FROM PurchaseordersModel p WHERE p.amount = :amount"),
+    @NamedQuery(name = "PurchaseordersModel.findByVendorno", query = "SELECT p FROM PurchaseordersModel p WHERE p.vendorno = :vendorno"),
     @NamedQuery(name = "PurchaseordersModel.findByPodate", query = "SELECT p FROM PurchaseordersModel p WHERE p.podate = :podate")})
 public class PurchaseordersModel implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ponumber")

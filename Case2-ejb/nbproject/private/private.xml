@@ -5,7 +5,7 @@
         <group>
             <file>file:/C:/Users/Craig/Documents/Term6-Fall2014/INFO5059%20-%20Java%20EE%20Client%20Server/Case2/Case2-ejb/src/java/models/ProductsModel.java</file>
             <file>file:/C:/Users/Craig/Documents/Term6-Fall2014/INFO5059%20-%20Java%20EE%20Client%20Server/Case2/Case2-ejb/src/java/models/VendorsModel.java</file>
-            <file>file:/C:/Users/Craig/Documents/Term6-Fall2014/INFO5059%20-%20Java%20EE%20Client%20Server/Case2/Case2-ejb/src/java/dtos/ProductEJBDTO.java</file>
+            <file>file:/C:/Users/Craig/Documents/Term6-Fall2014/INFO5059%20-%20Java%20EE%20Client%20Server/Case2/Case2-ejb/src/java/case2ejbs/POFacadeBean.java</file>
             <file>file:/C:/Users/Craig/Documents/Term6-Fall2014/INFO5059%20-%20Java%20EE%20Client%20Server/Case2/Case2-ejb/src/java/case2ejbs/ProductFacadeBean.java</file>
         </group>
     </open-files>
