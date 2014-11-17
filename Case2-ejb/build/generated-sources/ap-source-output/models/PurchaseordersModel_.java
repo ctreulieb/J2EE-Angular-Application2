@@ -9,7 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import models.PurchaseorderlineitemsModel;
 import models.VendorsModel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2014-11-16T23:25:04")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2014-11-17T14:55:33")
 @StaticMetamodel(PurchaseordersModel.class)
 public class PurchaseordersModel_ { 
 
