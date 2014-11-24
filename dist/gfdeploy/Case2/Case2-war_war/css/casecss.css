@@ -7,7 +7,7 @@
 .custom-error {
     font-size: x-small; font-weight: bold; color: red;
 }
-
+.changed div {color:blue;background: lightyellow;}
 
 
 

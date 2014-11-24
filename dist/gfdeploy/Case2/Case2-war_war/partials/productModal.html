@@ -12,34 +12,11 @@
                 <div class="panel-body xsmall" ng-class="{true: 'collapse'}[isCollapsed]">
                     <div class="col-xs-5 col-lg-6 text-right">Vendor:</div>
                     <div class="col-xs-7 col-lg-6 text-left"><select  required ng-model="product.vendorno" name="vendorno" ng-options="v.vendorno as v.vendorno for v in vendors"></select></div>
-                    <div class="col-xs-5 col-lg-6 text-right">Product Code:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-disabled="todo === 'update'" ng-maxlength="5" ng-model="product.productcode" name="productcode" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.productcode.$pristine || productForm.productcode.$invalid">
-                        <span ng-show="productForm.productcode.$error.required">Product Code is required</span>
-                        <span ng-show="productForm.productcode.$error.maxlength">Product Code max length is 5</span>
-                    </div>
-                    <div class="col-xs-5 col-lg-6 text-right">Vendor SKU:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-model="product.vendorsku" ng-maxlength="10" name="vendorsku" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.vendorsku.$pristine || productForm.vendorsku.$invalid">
-                        <span ng-show="productForm.vendorsku.$error.required">Vendor Sku is required</span>
-                        <span ng-show="productForm.vendorsku.$error.maxlength">Vendor Sku max length is 10</span>
-                    </div>
-                    <div class="col-xs-5 col-lg-6 text-right">Name:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-maxlength="20" ng-model="product.productname" name="productname" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.productname.$pristine || productForm.productname.$invalid">
-                        <span ng-show="productForm.productname.$error.required">Product Name is required</span>
-                        <span ng-show="productForm.productname.$error.maxlength">Product Name max length is 20</span>
-                    </div>
-                    <div class="col-xs-5 col-lg-6 text-right">Cost:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-model="product.costprice" name="costprice" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.costprice.$pristine || productForm.costprice.$invalid">
-                        <span ng-show="productForm.costprice.$error.required">Cost is required</span>
-                    </div>
-                    <div class="col-xs-5 col-lg-6 text-right">MSRP:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-model="product.msrp" name="msrp" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.msrp.$pristine || productForm.msrp.$invalid">
-                        <span ng-show="productForm.msrp.$error.required">MSRP is required</span>
-                    </div>
+                    <my-reqfld type="txt" label="Product Code" size="10" max="25" ng-model="product.productcode"></my-reqfld>
+                    <my-reqfld type="txt" label="Vendor SKU" size="10" max="25" ng-model="product.vendorsku"></my-reqfld>
+                    <my-reqfld type="txt" label="Name" size="10" max="25" ng-model="product.productname"></my-reqfld>
+                    <my-reqfld type="dec" label="Cost" size="4" max="999.99" ng-model="product.costprice"></my-reqfld>
+                    <my-reqfld type="dec" label="MSRP" size="4" max="999.99" ng-model="product.msrp"></my-reqfld>
                 </div>
                 <div class="panel-heading xsmall">
                     Inventory Information
@@ -49,26 +26,10 @@
                     </button>
                 </div>
                 <div class="panel-body xsmall" ng-class="{true: 'collapse'}[!isCollapsed]">
-                    <div class="col-xs-5 col-lg-6 text-right">ROP:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-model="product.rop" name="rop" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.rop.$pristine || productForm.rop.$invalid">
-                        <span ng-show="productForm.rop.$error.required">ROP is required</span>
-                    </div>
-                    <div class="col-xs-5 col-lg-6 text-right">EOQ:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-model="product.eoq" name="eoq" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.eoq.$pristine || productForm.eoq.$invalid">
-                        <span ng-show="productForm.eoq.$error.required">EOQ is required</span>
-                    </div>
-                    <div class="col-xs-5 col-lg-6 text-right">QOH:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-model="product.qoh" name="qoh" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.qoh.$pristine || productForm.qoh.$invalid">
-                        <span ng-show="productForm.qoh.$error.required">QOH is required</span>
-                    </div>
-                    <div class="col-xs-5 col-lg-6 text-right">QOO:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-model="product.qoo" name="qoo" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.qoo.$pristine || productForm.qoo.$invalid">
-                        <span ng-show="productForm.qoo.$error.required">QOO is required</span>
-                    </div>
+                    <my-reqfld type="int" label="ROP" size="2" max="999" ng-model="product.rop"></my-reqfld>
+                    <my-reqfld type="int" label="EOQ" size="2" max="999" ng-model="product.eoq"></my-reqfld>
+                    <my-reqfld type="int" label="QOH" size="2" max="999" ng-model="product.qoh"></my-reqfld>
+                    <my-reqfld type="int" label="QOO" size="2" max="999" ng-model="product.qoo"></my-reqfld>
                 </div>
                 <div class="panel-heading xsmall">
                     QR Code
@@ -78,11 +39,7 @@
                     </button>
                 </div>
                 <div class="panel-body xsmall" ng-class="{true: 'collapse'}[!qrCollapsed]">
-                    <div class="col-xs-5 col-lg-6 text-right">QR Text:</div>
-                    <div class="col-xs-7 col-lg-6 text-left"><input  size=10 required type="text" ng-model="product.qrcodetext" name="qrcodetext" /></div>
-                    <div class="cols-xs-11 custom-error" ng-show="productForm.qrt.$pristine || productForm.qrt.$invalid">
-                        <span ng-show="productForm.qrt.$error.required">QR Text is required</span>
-                    </div>
+                    <my-reqfld type="txt" label="QR Text" size="10" max="25" ng-model="product.qrcodetext"></my-reqfld>
                     <div class="col-xs-5 col-lg-6 text-right">QR Code:</div>
                     <div class="col-xs-6 col-lg-6 text-left">
                         <img alt="qrcode" ng-src="QRCode?qrc={{product.productcode}}" />
